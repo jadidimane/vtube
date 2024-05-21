@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>VideoTube</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}"/>
+</head>
+<body>
+<nav class="flex-div">
+    <div class="nav-left flex-div"  >
+        <img th:src="@{/images/menu.png}" class="menu-icon" >
+        <img th:src="@{/images/logo.png}" class="logo-icon">
+    </div>
+    <div class="nav-middle flex-div">
+        <div class="search-box flex-div" >
+            <input type="text" name="keyword" placeholder="Search">
+            <img th:src="@{/images/search.png}">
+        </div>
+        <img th:src="@{/images/voice-search.png}" class="mic-icon">
+    </div>
+    <div class="nav-right flex-div" >
+        <img th:src="@{/images/upload.png}" >
+        <img th:src="@{/images/more.png}" >
+        <img th:src="@{/images/notification.png}" >
+        <img th:src="@{/images/Jack.png}" class="usericon" >
+    </div>
+</nav>
+<section layout: fragment="content"></section>
+</body>
+</html>

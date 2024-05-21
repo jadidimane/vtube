@@ -1,0 +1,63 @@
+<html  xmlns:th="https://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>videotube</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+<nav class="flex-div">
+    <div class="nav-left flex-div"  >
+        <img th:src="@{/images/menu.png}" class="menu-icon" >
+        <img th:src="@{/images/logo.png}" class="logo-icon">
+    </div>
+    <div class="nav-middle flex-div">
+        <div class="search-box flex-div" >
+            <input type="text" name="keyword" placeholder="Search">
+            <img th:src="@{/images/search.png}">
+        </div>
+        <img th:src="@{/images/voice-search.png}" class="mic-icon">
+    </div>
+    <div class="nav-right flex-div" >
+        <a href="/upload"><img th:src="@{/images/upload.png}" ></a>
+        <img th:src="@{/images/more.png}" >
+        <img th:src="@{/images/Jack.png}" class="usericon" >
+    </div>
+</nav>
+<!-- ----------------------------------------SIDEBAR------------------ -->
+<div class="sidebar" >
+    <div class="shortcut-links">
+        <a href=""><img th:src="@{/images/home.png}"><p>Home</p></a>
+        <a href=""><img th:src="@{/images/playlist.png}"><p>Playlist</p></a>
+        <a href=""><img th:src="@{/images/subscriprion.png}"><p>Subscriptions</p></a>
+    </div>
+    <div class="subscribed-list">
+       <title>Subscribed</title>
+        <a href=""><img th:src="@{/images/Jack.png}"><p>jack Yashinton</p></a>
+    </div>
+    
+</div>
+
+
+<div class="container">
+    <div class="list-container">
+        <div class="vid-list" th:each="v:${listVideos}">
+            <a th:href="@{/playvideo(id=${v.getId()})}"><img th:src="${v.getThumbnailFile()}" class="thumbnail"></a>
+            <div class="flex-div">
+                <img th:src="@{/images/Jack.png}">
+                <div class="vid-info">
+                    <a href="" th:text="${v.getTitle()}"></a>
+                    <p>Easy Tutorial</p>
+                    <p>15 k views &bull;2 days </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script th:src="@{/js/script.js}"></script>
+</body>
+</html>

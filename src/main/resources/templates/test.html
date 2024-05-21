@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rounded Initial Image Generator in Sidebar</title>
+    <style>
+        /* Sidebar styles */
+        .sidebar {
+            background-color: #333;
+            color: #fff;
+            width: 250px;
+            padding: 20px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 100%;
+        }
+
+        .sidebar-brand {
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+
+        canvas {
+            border-radius: 50%; /* Make the canvas round */
+            border: 3px solid #fff; /* Add border with width */
+            margin-bottom: 20px; /* Add some spacing between the canvas and other elements */
+        }
+    </style>
+</head>
+<body>
+
+<!-- Sidebar -->
+<div class="sidebar">
+    <!-- Initial Image Generator -->
+    <canvas id="initialCanvas" width="50" height="50"></canvas>
+    <!-- Brand -->
+    <div class="sidebar-brand">My Website</div>
+    <!-- Other sidebar content -->
+    <ul>
+        <li><a href="#">Link 1</a></li>
+        <li><a href="#">Link 2</a></li>
+        <li><a href="#">Link 3</a></li>
+    </ul>
+</div>
+
+<script>
+    // Function to generate a random color
+    function getRandomColor() {
+        const letters = '0123456789ABCDEF';
+        let color = '#';
+        for (let i = 0; i < 6; i++) {
+            color += letters[Math.floor(Math.random() * 16)];
+        }
+        return color;
+    }
+
+    // Function to generate an image displaying the first letter of the given name with rounded background
+    function generateInitialImage(name) {
+        const canvas = document.getElementById('initialCanvas');
+        const ctx = canvas.getContext('2d');
+
+        // Generate random background color
+        const bgColor = getRandomColor();
+
+        // Clear the canvas
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+        // Draw rounded background
+        ctx.beginPath();
+        ctx.arc(canvas.width / 2, canvas.height / 2, canvas.width / 2, 0, 2 * Math.PI);
+        ctx.fillStyle = bgColor;
+        ctx.fill();
+
+        // Set font properties
+        const fontSize = 24; // Font size
+        const font = `${fontSize}px Arial`;
+        ctx.font = font;
+        ctx.fillStyle = '#fff'; // White color
+        ctx.fontWeight = 'bold'; // Bold font weight
+
+        // Center the text horizontally and vertically
+        ctx.textAlign = 'center';
+        ctx.textBaseline = 'middle';
+
+        // Draw the initial letter
+        const initial = name.charAt(0).toUpperCase();
+        ctx.fillText(initial, canvas.width / 2, canvas.height / 2);
+
+        // Set the canvas border color to the background color
+        canvas.style.borderColor = bgColor;
+    }
+
+    // Example usage: Generate image for the name "J"
+    generateInitialImage("Imane");
+</script>
+
+</body>
+</html>

@@ -1,0 +1,39 @@
+/* Styles pour la mise en page */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 20px;
+}
+
+#videoList {
+    margin-top: 20px;
+}
+
+.videoItem {
+    margin-bottom: 10px;
+}
+
+/* Styles pour les boutons */
+button {
+    cursor: pointer;
+    margin-left: 10px;
+}
+
+/* Styles pour la mise en page */
+.deleteButton {
+    background-color: #ff6961;
+    color: white;
+    border: none;
+}
+
+.editButton {
+    background-color: #77dd77;
+    color: white;
+    border: none;
+}
+
+.publicButton {
+    background-color: #add8e6;
+    color: white;
+    border: none;
+}
