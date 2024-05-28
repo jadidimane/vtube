@@ -41,10 +41,6 @@
         <a href=""><img th:src="@{/images/playlist.png}"><p>Playlist</p></a>
         <a href=""><img th:src="@{/images/subscriprion.png}"><p>Subscriptions</p></a>
     </div>
-    <div class="subscribed-list">
-        <h3>Subscribed</h3>
-        <a href=""><img th:src="@{/images/Jack.png}"><p>Jack Yashinton</p></a>
-    </div>
 </div>
 <div class="previous-icon">
     <a th:href="@{'/index?page=' + ${videos.number - 1}}"
@@ -58,7 +54,6 @@
         <div class="vid-list" th:each="v:${listVideos}">
             <a th:href="@{/playvideo(id=${v.getId()})}"><img th:src="${v.getThumbnailFile()}" class="thumbnail"></a>
             <div class="flex-div">
-                <img th:src="@{/images/Jack.png}">
                 <div class="vid-info">
                     <a href="" th:text="${v.getTitle()}"></a>
                     <p>Easy Tutorial</p>

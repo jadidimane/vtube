@@ -62,7 +62,7 @@ public class VideoController {
     @GetMapping("/manage")
     public String manage(Model model,
                          @RequestParam(name = "page", defaultValue = "0") int page,
-                         @RequestParam(name = "taille", defaultValue = "3") int taille,
+                         @RequestParam(name = "taille", defaultValue = "5") int taille,
                          @RequestParam(name = "search", defaultValue = "") String keyword, HttpSession httpSession
     ) {
         Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
@@ -75,6 +75,7 @@ public class VideoController {
             model.addAttribute("pages", pages);
             model.addAttribute("keyword", keyword);
             model.addAttribute("page", page);
+            model.addAttribute("username",username);
 
             return "manageVideosUser";
         } else {

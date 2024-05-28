@@ -9,6 +9,7 @@
   <link rel="stylesheet" th:href="@{/css/style.css}">
 </head>
 <body>
+<input type="hidden" id="username" th:value="${username}"/>
 <nav class="flex-div">
   <div class="nav-left flex-div">
     <img th:src="@{/images/menu.png}" class="menu-icon">
@@ -30,7 +31,6 @@
     </div>
   </div>
 </nav>
- Sidebar
 <div class="sidebar">
     <div class="shortcut-links">
         <a href=""><img th:src="@{/images/home.png}"><p>Home</p></a>
@@ -41,14 +41,10 @@
     <div class="vid-list" th:each="v:${listVideos}">
       <a th:href="@{/playvideo(id=${v.getId()})}"><img th:src="${v.getThumbnailFile()}" class="thumbnail"></a>
         <div class="flex-div bd">
-            <div class="video-container">
-                <img th:src="@{/images/Jack.png}" alt="Video Thumbnail" class="thumbnail">
-            </div>
             <div class="flex-div info-container">
                 <div class="vid-info">
                     <a href="" th:text="${v.getTitle()}"></a>
-                    <p>Easy Tutorial</p>
-                    <p>15k views &bull; 2 days</p>
+                    <p th:text="${username}"></p>
                 </div>
                 <div class="menu">
                     <button class="menu-btn">⋮</button>

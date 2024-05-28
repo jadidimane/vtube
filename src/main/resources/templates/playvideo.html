@@ -50,7 +50,7 @@
          </div>
        </div>
        <hr>
-       <div class="publisher">
+       <!--<div class="publisher">
          <div class="avatar-container">
            <canvas id="avatarCanva" width="50" height="50"></canvas>
          </div>
@@ -59,14 +59,14 @@
            <span>s</span>
          </div>
          <button type="submit">Subscribe </button>
-       </div>
+       </div>-->
        <div class="vid-description">
-         <p></p>
+         <p th:text="${video.getDescription()}"></p>
        </div>
        <hr>
        <h4>134 Comments</h4>
        <div class="add-comment flex-div">
-         <img th:src="@{/images/Jack.png}">
+        <!-- <img th:src="@{/images/Jack.png}">-->
          <form method="get" th:action="@{addcomment}" class="form-inline">
            <input type="hidden" name="id" th:value="${id} " class="form-control mr-2">
            <input type="text" name="content" th:value="${contenu}" class="form-control mr-2"/>
@@ -77,9 +77,8 @@
        </div>
 
        <div class="old-comment" th:each="c:${comments}">
-         <img th:src="@{/images/Jack.png}">
          <div >
-           <h3 th:text="${c.getCommenters().getUsername()+'.'+c.getCommentDate()}"> </h3>
+           <h3 th:text="${c.getCommenters().getUsername()}"> </h3>
              <p th:text="${c.getCommentText()}" ></p>
            <div class="comment-action">
              <img th:src="@{/images/like.png}">
@@ -96,9 +95,8 @@
       <div class="side-video-list" th:each="v:${videos}">
         <a href="" class="small-thumbnail"><img th:src="${v.getThumbnailFile()}"> </a>
         <div class="vid-info">
-          <a href=""> video title</a>
-          <p>Easy Tutorial</p>
-          <p>15 k views &bull 2 days </p>
+          <a th:text="${v.getTitle()}"> video title</a>
+          <p th:text="${username}"></p>
         </div>
       </div>
      </div>

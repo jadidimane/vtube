@@ -19,7 +19,7 @@ public class SecurityConfig {
         http.csrf().disable().authorizeHttpRequests(request-> request.requestMatchers("/register","/registerdb","/css/registerstyle.css" , "/login","/")
                         .permitAll()
                         .requestMatchers( "/index",
-                                "/videos/*","/localimages/*","js/*","css/*" ,"images/*","/addVideo","/addcomment","/playvideo","/manage").hasRole("USER")
+                                "/videos/*","/localimages/*","js/*","css/*" ,"images/*","/addVideo","/addcomment","/playvideo","/manage","/edit").hasRole("USER")
                         .anyRequest().authenticated())
                 .formLogin(form->form.loginPage("/login").defaultSuccessUrl("/index")).httpBasic(Customizer.withDefaults());
 

@@ -27,7 +27,7 @@ public class Video {
     private String thumbnailFile;
     private String videoFile;
 
-    @OneToMany(mappedBy = "video")
+    @OneToMany(mappedBy = "video",cascade =CascadeType.REMOVE)
     List<Comment> comments=new ArrayList<Comment>();
     @ManyToOne
     private User uploader;
