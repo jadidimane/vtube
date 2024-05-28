@@ -16,10 +16,10 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain defaultsecurityFilterChain(HttpSecurity http) throws Exception{
 
-        http.csrf().disable().authorizeHttpRequests(request-> request.requestMatchers("/register","/registerdb","/css/registerstyle.css" , "/login")
+        http.csrf().disable().authorizeHttpRequests(request-> request.requestMatchers("/register","/registerdb","/css/registerstyle.css" , "/login","/")
                         .permitAll()
                         .requestMatchers( "/index",
-                                "/videos/*","/localimages/*","js/*","css/*" ,"images/*","/addVideo","/addcomment","/playvideo").hasRole("USER")
+                                "/videos/*","/localimages/*","js/*","css/*" ,"images/*","/addVideo","/addcomment","/playvideo","/manage").hasRole("USER")
                         .anyRequest().authenticated())
                 .formLogin(form->form.loginPage("/login").defaultSuccessUrl("/index")).httpBasic(Customizer.withDefaults());
 

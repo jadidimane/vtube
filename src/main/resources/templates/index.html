@@ -1,4 +1,5 @@
-<html  xmlns:th="https://www.thymeleaf.org" lang="en">
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org" lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport"
@@ -8,38 +9,49 @@
     <link rel="stylesheet" th:href="@{/css/style.css}">
 </head>
 <body>
+<input type="hidden" id="username" th:value="${username}"/>
 <nav class="flex-div">
-    <div class="nav-left flex-div"  >
-        <img th:src="@{/images/menu.png}" class="menu-icon" >
+    <div class="nav-left flex-div">
+        <img th:src="@{/images/menu.png}" class="menu-icon">
         <img th:src="@{/images/logo.png}" class="logo-icon">
     </div>
     <div class="nav-middle flex-div">
-        <div class="search-box flex-div" >
-            <input type="text" name="keyword" placeholder="Search">
-            <img th:src="@{/images/search.png}">
-        </div>
+        <form action="/index" method="get">
+            <div class="search-box flex-div">
+                <input type="text" name="search" placeholder="Search">
+                <button type="submit">
+                    <img th:src="@{/images/search.png}"></button>
+            </div>
+        </form>
         <img th:src="@{/images/voice-search.png}" class="mic-icon">
     </div>
-    <div class="nav-right flex-div" >
-        <a href="/upload"><img th:src="@{/images/upload.png}" ></a>
-        <img th:src="@{/images/more.png}" >
-        <img th:src="@{/images/Jack.png}" class="usericon" >
+    <div class="nav-right flex-div">
+        <a href="/manage"><img th:src="@{/images/upload.png}"></a>
+        <img th:src="@{/images/more.png}">
+        <a href="/logout"><img th:src="@{/images/th.jpg}"></a>
+        <div class="avatar-container">
+            <canvas id="avatarCanvas" width="50" height="50"></canvas>
+        </div>
     </div>
 </nav>
-<!-- ----------------------------------------SIDEBAR------------------ -->
-<div class="sidebar" >
+ <!--Sidebar-->
+<div class="sidebar">
     <div class="shortcut-links">
-        <a href=""><img th:src="@{/images/home.png}"><p>Home</p></a>
+        <a th:href="@{index}"><img th:src="@{/images/home.png}"><p>Home</p></a>
         <a href=""><img th:src="@{/images/playlist.png}"><p>Playlist</p></a>
         <a href=""><img th:src="@{/images/subscriprion.png}"><p>Subscriptions</p></a>
     </div>
     <div class="subscribed-list">
-       <title>Subscribed</title>
-        <a href=""><img th:src="@{/images/Jack.png}"><p>jack Yashinton</p></a>
+        <h3>Subscribed</h3>
+        <a href=""><img th:src="@{/images/Jack.png}"><p>Jack Yashinton</p></a>
     </div>
-    
 </div>
-
+<div class="previous-icon">
+    <a th:href="@{'/index?page=' + ${videos.number - 1}}"
+       th:if="${videos.hasPrevious()}" class="pagination-icon previous-page">
+        <img th:src="@{/images/left.png}" alt="Previous">
+    </a>
+</div>
 
 <div class="container">
     <div class="list-container">
@@ -50,14 +62,18 @@
                 <div class="vid-info">
                     <a href="" th:text="${v.getTitle()}"></a>
                     <p>Easy Tutorial</p>
-                    <p>15 k views &bull;2 days </p>
+                    <p>15k views &bull; 2 days</p>
                 </div>
             </div>
         </div>
+        <div class="pagination">
+            <a th:href="@{'/index?page=' + ${videos.number + 1}}"
+               th:if="${videos.hasNext()}"  class="pagination-icon next-page">
+                <img th:src="@{/images/right.png}" alt="Next">
+            </a>
+        </div>
     </div>
 </div>
-
-
 <script th:src="@{/js/script.js}"></script>
 </body>
 </html>

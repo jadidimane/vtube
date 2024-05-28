@@ -6,7 +6,9 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.Period;
 
 @Entity
 @Getter
@@ -18,7 +20,8 @@ public class Comment {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer commentId;
     private String commentText;
-    private LocalDateTime commentDate;
+    private LocalDate commentDate=LocalDate.now();
+    private Period period=Period.between(getCommentDate(),LocalDate.now());
     private int likes;
     private int dislikes;
     @ManyToOne

@@ -5,7 +5,7 @@ import com.example.vtube.dao.entities.User;
 import java.util.List;
 
 public interface UserManager {
-    public void registerUser(User user);
+    public User registerUser(User user);
     public User findByLogin(String username);
     public void updateUser(User user);
     public List<User> getAllUsers();

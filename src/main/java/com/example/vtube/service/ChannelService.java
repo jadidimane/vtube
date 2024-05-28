@@ -20,7 +20,7 @@ public class ChannelService implements ChannelManager {
 
     @Override
     public Channel createChannel(User creator) {
-        Channel channel1=new Channel();channel1.setUser(creator);
+        Channel channel1=new Channel();channel1.setUser(creator);channel1.setName(creator.getUsername());
         return channelRepository.save(channel1);
     }
 

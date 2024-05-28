@@ -37,10 +37,10 @@ public class UserService implements  UserManager {
 
     @Override
     @Transactional
-    public void registerUser(User user) {
+    public User registerUser(User user) {
         user.setRole(Role.USER);
         user.setPassword(passwordEncoder.encode(user.getPassword()));
-        userRepository.save(user);
+        return userRepository.save(user);
     }
 
     @Override

@@ -10,6 +10,7 @@
   <link rel="stylesheet" th:href="@{/css/style.css}">
 </head>
 <body>
+<input type="hidden" id="username" th:value="${username}"/>
 <nav class="flex-div">
   <div class="nav-left flex-div"  >
     <img th:src="@{/images/menu.png}" class="menu-icon" >
@@ -23,11 +24,14 @@
     <img th:src="@{/images/voice-search.png}" class="mic-icon">
   </div>
   <div class="nav-right flex-div" >
-    <img th:src="@{/images/upload.png}" >
-    <img th:src="@{/images/more.png}" >
-    <img th:src="@{/images/notification.png}" >
-    <img th:src="@{/images/Jack.png}" class="usericon" >
+    <a href="/manage"><img th:src="@{/images/upload.png}"></a>
+    <img th:src="@{/images/more.png}">
+    <a href="/logout"><img th:src="@{/images/th.jpg}"></a>
+    <div class="avatar-container">
+      <canvas id="avatarCanvas" width="50" height="50"></canvas>
+    </div>
   </div>
+
 </nav>
 <div class="container play-container" >
   <div class="row">
@@ -35,15 +39,9 @@
        <video controls autoplay>
             <source th:src="${video.getVideoFile()}" type="video/mp4" >
        </video>
-       <div class="tags">
-         <a href="">#Coding</a>
-         <a href="">#HTML</a>
-         <a href="">#CSS</a>
-         <a href="">#JAVASCRIPT</a>
-       </div>
-       <h3>Video title</h3>
+       <h3 th:text="${video.getTitle()}"></h3>
        <div class="play-video-info">
-         <p>1225 views &bull; 2 days ago </p>
+         <p th:text="${video.getViews()}"></p>
          <div>
            <a href=""><img th:src="@{images/like.png}">125</a>
            <a href=""><img th:src="@{images/dislike.png}">2</a>
@@ -53,34 +51,36 @@
        </div>
        <hr>
        <div class="publisher">
-         <img th:src="@{/images/Jack.png}">
+         <div class="avatar-container">
+           <canvas id="avatarCanva" width="50" height="50"></canvas>
+         </div>
          <div>
-           <p>Channel name</p>
-           <span>500k Subscribers</span>
+           <p>Yahoooo</p>
+           <span>s</span>
          </div>
          <button type="submit">Subscribe </button>
        </div>
        <div class="vid-description">
-         <p>Text</p>
+         <p></p>
        </div>
        <hr>
        <h4>134 Comments</h4>
        <div class="add-comment flex-div">
          <img th:src="@{/images/Jack.png}">
-         <div class="flex-div">
-           <input type="text" placeholder="Write comment..." name="content" th:value="${content}">
-           <a th:href="@{addcomment(id=${id})}"><img th:src="@{/images/share.png}"></a><!--postaddcommentcommentcontroller-->
-         </div>
+         <form method="get" th:action="@{addcomment}" class="form-inline">
+           <input type="hidden" name="id" th:value="${id} " class="form-control mr-2">
+           <input type="text" name="content" th:value="${contenu}" class="form-control mr-2"/>
+           <button type="submit">
+             Submit
+           </button>
+         </form>
+       </div>
 
-
-
-        </div>
-       <div class="old-comment">
+       <div class="old-comment" th:each="c:${comments}">
          <img th:src="@{/images/Jack.png}">
-         <div>
-           <h3>username <span>date ago</span></h3>
-
-           <p>printing and typesetting industry. Lorem</p>
+         <div >
+           <h3 th:text="${c.getCommenters().getUsername()+'.'+c.getCommentDate()}"> </h3>
+             <p th:text="${c.getCommentText()}" ></p>
            <div class="comment-action">
              <img th:src="@{/images/like.png}">
             <span>244</span>
@@ -93,17 +93,18 @@
 
      </div>
     <div class="right-sidebar">
-      <div class="side-video-list">
-        <a href="" class="small-thumbnail"><img th:src="@{/images/thumbnail1.png}"> </a>
+      <div class="side-video-list" th:each="v:${videos}">
+        <a href="" class="small-thumbnail"><img th:src="${v.getThumbnailFile()}"> </a>
         <div class="vid-info">
           <a href=""> video title</a>
           <p>Easy Tutorial</p>
-          <p>15 k views &bull;2 days </p>
+          <p>15 k views &bull 2 days </p>
         </div>
       </div>
      </div>
 
   </div>
 </div>
+<script th:src="@{/js/script.js}"></script>
 </body>
 </html>
