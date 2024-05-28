@@ -25,7 +25,7 @@ public class User {
     private String password;
     @OneToOne
     private Channel channel;
-    @OneToMany(mappedBy = "uploader")
+    @OneToMany(mappedBy = "uploader",cascade=CascadeType.REMOVE)
     List<Video> videos=new ArrayList<Video>();
     @ManyToMany(mappedBy = "subscribers")
     List<Channel> subscribedChannels=new ArrayList<Channel>();
